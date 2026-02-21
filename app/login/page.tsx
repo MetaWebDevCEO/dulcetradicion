@@ -33,8 +33,8 @@
     }
 
     setLoading(false);
-    router.push("/proximamente");
-   };
+    router.push("/app");
+  };
 
   useEffect(() => {
     if (!error) {
