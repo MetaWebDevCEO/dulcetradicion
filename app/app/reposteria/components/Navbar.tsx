@@ -1,0 +1,102 @@
+import React from 'react';
+import { 
+  HelpCircle, 
+  Mail, 
+  Bell, 
+  Share2, 
+  ChevronRight, 
+  ChevronDown,
+  ArrowLeft,
+  ArrowRight,
+  Menu
+} from 'lucide-react';
+import Link from 'next/link';
+
+interface NavbarProps {
+  onMenuClick?: () => void;
+}
+
+export function Navbar({ onMenuClick }: NavbarProps) {
+  return (
+    <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-4 md:px-6 sticky top-0 z-10 w-full">
+      {/* Left Section: Menu Toggle + Breadcrumbs */}
+      <div className="flex items-center gap-3 md:gap-4">
+        {/* Mobile Menu Button */}
+        <button 
+          onClick={onMenuClick}
+          className="p-2 -ml-2 hover:bg-gray-100 rounded-lg transition-colors md:hidden text-gray-600"
+          aria-label="Open menu"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+
+        {/* Desktop Navigation Arrows */}
+        <div className="hidden md:flex items-center gap-1 text-gray-400">
+          <button className="p-1.5 hover:bg-gray-100 rounded-md transition-colors">
+            <ArrowLeft className="w-4 h-4" />
+          </button>
+          <button className="p-1.5 hover:bg-gray-100 rounded-md transition-colors">
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+        
+        {/* Breadcrumbs / Page Title */}
+        <nav className="flex items-center text-sm font-medium text-gray-500">
+          <Link href="#" className="hover:text-gray-900 transition-colors hidden sm:inline-block">
+            Dulce Tradicion
+          </Link>
+          <ChevronRight className="w-4 h-4 mx-2 text-gray-400 hidden sm:inline-block" />
+          <span className="text-gray-900 font-semibold sm:font-medium text-base sm:text-sm">
+            Repostería
+          </span>
+        </nav>
+      </div>
+
+      {/* Right Section: Actions & Profile */}
+      <div className="flex items-center gap-2 sm:gap-4">
+        {/* Icons Group */}
+        <div className="flex items-center gap-1 sm:gap-2 sm:border-r sm:border-gray-200 sm:pr-4">
+          <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors relative group hidden sm:block">
+            <HelpCircle className="w-5 h-5" />
+            <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-20">
+              Ayuda
+            </span>
+          </button>
+          <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors relative group hidden sm:block">
+            <Mail className="w-5 h-5" />
+            <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-20">
+              Mensajes
+            </span>
+          </button>
+          <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors relative group">
+            <div className="relative">
+              <Bell className="w-5 h-5" />
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+            </div>
+            <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-20">
+              Notificaciones
+            </span>
+          </button>
+        </div>
+
+        {/* User Profile */}
+        <button className="flex items-center gap-2 hover:bg-gray-50 py-1.5 px-2 rounded-lg transition-colors">
+          <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden border border-gray-200 shrink-0">
+             <img 
+               src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" 
+               alt="Usuario" 
+               className="w-full h-full object-cover"
+             />
+          </div>
+          <ChevronDown className="w-4 h-4 text-gray-400 hidden sm:block" />
+        </button>
+
+        {/* Share Button (Desktop only) */}
+        <button className="hidden lg:flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors shadow-sm shadow-green-700/20">
+          <span>Compartir</span>
+          <Share2 className="w-4 h-4" />
+        </button>
+      </div>
+    </header>
+  );
+}
