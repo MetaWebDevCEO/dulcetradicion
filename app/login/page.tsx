@@ -4,6 +4,7 @@
  import { useRouter } from "next/navigation";
  import { FormEvent, useEffect, useState } from "react";
  import { supabaseClient } from "@/lib/supabaseClient";
+ import { generateAvatar } from "@/lib/avatar";
  
  export default function Login() {
    const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +21,7 @@
     setShowError(false);
      setLoading(true);
  
-     const { error: signInError } = await supabaseClient.auth.signInWithPassword({
+     const { data, error: signInError } = await supabaseClient.auth.signInWithPassword({
        email,
        password,
      });
@@ -30,6 +31,22 @@
       setShowError(true);
       setLoading(false);
       return;
+    }
+
+    const user = data.user;
+    const currentAvatar = (user?.user_metadata as { avatar_url?: string } | undefined)?.avatar_url;
+    if (user && !currentAvatar) {
+      const avatarUrl = generateAvatar({
+        userId: user.id,
+        username: user.email ?? email,
+        size: 128,
+      });
+
+      await supabaseClient.auth.updateUser({
+        data: {
+          avatar_url: avatarUrl,
+        },
+      });
     }
 
     setLoading(false);

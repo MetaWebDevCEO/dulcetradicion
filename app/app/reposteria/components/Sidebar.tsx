@@ -1,6 +1,7 @@
+"use client";
+
 import React from 'react';
 import { 
-  Cookie,
   Package,
   ShoppingBag,
   Phone,
@@ -15,6 +16,8 @@ import {
   X
 } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from "next/navigation";
+import { supabaseClient } from "@/lib/supabaseClient";
 
 interface SidebarProps {
   isOpen?: boolean;
@@ -22,6 +25,14 @@ interface SidebarProps {
 }
 
 export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await supabaseClient.auth.signOut();
+    onClose?.();
+    router.replace("/login");
+  };
+
   return (
     <>
       {/* Mobile Overlay */}
@@ -141,7 +152,10 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   <span className="font-medium text-sm">Soporte</span>
                 </div>
               </Link>
-              <button className="w-full flex items-center justify-between px-4 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg group transition-colors text-left">
+              <button
+                onClick={handleLogout}
+                className="w-full flex items-center justify-between px-4 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg group transition-colors text-left"
+              >
                 <div className="flex items-center gap-3">
                   <LogOut className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
                   <span className="font-medium text-sm">Log out</span>

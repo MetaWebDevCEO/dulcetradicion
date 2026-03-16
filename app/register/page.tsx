@@ -4,6 +4,7 @@
  import { useRouter } from "next/navigation";
  import { FormEvent, useEffect, useState } from "react";
  import { supabaseClient } from "@/lib/supabaseClient";
+ import { generateAvatar } from "@/lib/avatar";
  
  export default function Register() {
    const [showPassword, setShowPassword] = useState(false);
@@ -30,12 +31,18 @@
  
      setLoading(true);
  
+     const avatarUrl = generateAvatar({
+       username: name || email,
+       size: 128,
+     });
+
      const { error: signUpError } = await supabaseClient.auth.signUp({
        email,
        password,
        options: {
          data: {
            full_name: name,
+           avatar_url: avatarUrl,
          },
        },
      });

@@ -1,4 +1,7 @@
+"use client";
+
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { 
   HelpCircle, 
   Mail, 
@@ -11,12 +14,55 @@ import {
   Menu
 } from 'lucide-react';
 import Link from 'next/link';
+import { supabaseClient } from '@/lib/supabaseClient';
+import { generateAvatar } from '@/lib/avatar';
 
 interface NavbarProps {
   onMenuClick?: () => void;
 }
 
 export function Navbar({ onMenuClick }: NavbarProps) {
+  const [avatarUrl, setAvatarUrl] = useState(() => generateAvatar({ seed: 'guest', size: 64 }));
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadUser = async () => {
+      const { data } = await supabaseClient.auth.getUser();
+      const user = data.user;
+
+      if (!isMounted) {
+        return;
+      }
+
+      if (!user) {
+        setAvatarUrl(generateAvatar({ seed: 'guest', size: 64 }));
+        return;
+      }
+
+      const currentAvatar = (user.user_metadata as { avatar_url?: string } | undefined)?.avatar_url;
+      setAvatarUrl(
+        currentAvatar ??
+          generateAvatar({
+            userId: user.id,
+            username: user.email ?? 'user',
+            size: 64,
+          }),
+      );
+    };
+
+    loadUser();
+
+    const { data } = supabaseClient.auth.onAuthStateChange(() => {
+      loadUser();
+    });
+
+    return () => {
+      isMounted = false;
+      data.subscription.unsubscribe();
+    };
+  }, []);
+
   return (
     <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-4 md:px-6 sticky top-0 z-10 w-full">
       {/* Left Section: Menu Toggle + Breadcrumbs */}
@@ -83,7 +129,7 @@ export function Navbar({ onMenuClick }: NavbarProps) {
         <button className="flex items-center gap-2 hover:bg-gray-50 py-1.5 px-2 rounded-lg transition-colors">
           <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden border border-gray-200 shrink-0">
              <img 
-               src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" 
+               src={avatarUrl} 
                alt="Usuario" 
                className="w-full h-full object-cover"
              />
