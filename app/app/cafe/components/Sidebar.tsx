@@ -100,7 +100,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               </Link>
 
               <Link
-                href="/app/cafe"
+                href="/app/cafe/carrito"
                 className="flex items-center justify-between px-4 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg group transition-colors"
                 onClick={onClose}
               >
@@ -111,7 +111,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               </Link>
 
               <Link
-                href="/app/cafe"
+                href="/app/cafe/mis-pedidos"
                 className="flex items-center justify-between px-4 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg group transition-colors"
                 onClick={onClose}
               >
@@ -122,7 +122,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               </Link>
 
               <Link
-                href="/app/cafe"
+                href="/app/cafe/soporte"
                 className="flex items-center justify-between px-4 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg group transition-colors"
                 onClick={onClose}
               >
@@ -138,7 +138,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             <h3 className="px-4 text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wider">General</h3>
             <nav className="space-y-1">
               <Link
-                href="/app"
+                href="/app/cafe/configuracion"
                 className="flex items-center justify-between px-4 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg group transition-colors"
                 onClick={onClose}
               >
@@ -148,7 +148,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </div>
               </Link>
               <Link
-                href="/app"
+                href="/app/cafe/ayuda"
                 className="flex items-center justify-between px-4 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg group transition-colors"
                 onClick={onClose}
               >

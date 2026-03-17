@@ -65,9 +65,7 @@ export function Navbar({ onMenuClick }: NavbarProps) {
 
   return (
     <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-4 md:px-6 sticky top-0 z-10 w-full">
-      {/* Left Section: Menu Toggle + Breadcrumbs */}
       <div className="flex items-center gap-3 md:gap-4">
-        {/* Mobile Menu Button */}
         <button 
           onClick={onMenuClick}
           className="p-2 -ml-2 hover:bg-gray-100 rounded-lg transition-colors md:hidden text-gray-600"
@@ -76,7 +74,6 @@ export function Navbar({ onMenuClick }: NavbarProps) {
           <Menu className="w-5 h-5" />
         </button>
 
-        {/* Desktop Navigation Arrows */}
         <div className="hidden md:flex items-center gap-1 text-gray-400">
           <button className="p-1.5 hover:bg-gray-100 rounded-md transition-colors">
             <ArrowLeft className="w-4 h-4" />
@@ -86,7 +83,6 @@ export function Navbar({ onMenuClick }: NavbarProps) {
           </button>
         </div>
         
-        {/* Breadcrumbs / Page Title */}
         <nav className="flex items-center text-sm font-medium text-gray-500">
           <Link href="#" className="hover:text-gray-900 transition-colors hidden sm:inline-block">
             Dulce Tradicion
@@ -98,9 +94,7 @@ export function Navbar({ onMenuClick }: NavbarProps) {
         </nav>
       </div>
 
-      {/* Right Section: Actions & Profile */}
       <div className="flex items-center gap-2 sm:gap-4">
-        {/* Icons Group */}
         <div className="flex items-center gap-1 sm:gap-2 sm:border-r sm:border-gray-200 sm:pr-4">
           <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors relative group hidden sm:block">
             <HelpCircle className="w-5 h-5" />
@@ -125,7 +119,6 @@ export function Navbar({ onMenuClick }: NavbarProps) {
           </button>
         </div>
 
-        {/* User Profile */}
         <button className="flex items-center gap-2 hover:bg-gray-50 py-1.5 px-2 rounded-lg transition-colors">
           <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden border border-gray-200 shrink-0">
              <img 
@@ -137,7 +130,6 @@ export function Navbar({ onMenuClick }: NavbarProps) {
           <ChevronDown className="w-4 h-4 text-gray-400 hidden sm:block" />
         </button>
 
-        {/* Share Button (Desktop only) */}
         <button className="hidden lg:flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors shadow-sm shadow-green-700/20">
           <span>Compartir</span>
           <Share2 className="w-4 h-4" />

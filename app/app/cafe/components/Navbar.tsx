@@ -22,7 +22,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ onMenuClick }: NavbarProps) {
-  const [avatarUrl, setAvatarUrl] = useState(() => generateAvatar({ seed: "guest", size: 64 }));
+  const [avatarUrl, setAvatarUrl] = useState("https://api.dicebear.com/7.x/lorelei/svg?seed=guest&size=64");
 
   useEffect(() => {
     let isMounted = true;
@@ -97,12 +97,6 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
       <div className="flex items-center gap-2 sm:gap-4">
         <div className="flex items-center gap-1 sm:gap-2 sm:border-r sm:border-gray-200 sm:pr-4">
           <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors relative group hidden sm:block">
-            <HelpCircle className="w-5 h-5" />
-            <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-20">
-              Ayuda
-            </span>
-          </button>
-          <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors relative group hidden sm:block">
             <Mail className="w-5 h-5" />
             <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-20">
               Mensajes
@@ -130,10 +124,6 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
           <ChevronDown className="w-4 h-4 text-gray-400 hidden sm:block" />
         </button>
 
-        <button className="hidden lg:flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors shadow-sm shadow-green-700/20">
-          <span>Nuevo pedido</span>
-          <Plus className="w-4 h-4" />
-        </button>
       </div>
     </header>
   );

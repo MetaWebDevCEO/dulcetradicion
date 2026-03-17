@@ -35,7 +35,6 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
 
   return (
     <>
-      {/* Mobile Overlay */}
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black/50 z-40 md:hidden"
@@ -43,14 +42,12 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         />
       )}
 
-      {/* Sidebar Content */}
       <aside className={`
         fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-100 flex flex-col 
         transform transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         md:translate-x-0 md:static md:inset-auto md:h-screen md:overflow-y-auto
       `}>
-        {/* Logo & Close Button */}
         <div className="p-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-xl font-bold text-gray-800">Dulce Tradicion</span>
@@ -62,8 +59,6 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             <X className="w-5 h-5" />
           </button>
         </div>
-
-        {/* Search */}
         <div className="px-6 mb-6">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -78,9 +73,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
           </div>
         </div>
 
-        {/* Menu Sections */}
         <div className="flex-1 px-4 space-y-6 overflow-y-auto md:overflow-visible">
-          {/* Repostería */}
           <div>
             <h3 className="px-4 text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wider">Repostería</h3>
             <nav className="space-y-1">
@@ -111,7 +104,6 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             </nav>
           </div>
 
-          {/* Features */}
           <div>
             <h3 className="px-4 text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wider">Administación</h3>
             <nav className="space-y-1">
@@ -136,7 +128,6 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             </nav>
           </div>
 
-          {/* General */}
           <div>
             <h3 className="px-4 text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wider">General</h3>
             <nav className="space-y-1">
